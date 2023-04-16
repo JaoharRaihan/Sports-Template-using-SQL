@@ -1,3 +1,14 @@
+<?php
+?>
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en-US" class="no-js">
 
@@ -5,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Big Slam &#8211; Sport Club HTML Template</title>
+    <title>BCB &#8211; Sports Template</title>
 
     <link rel='stylesheet' href='css/font-awesome.css' type='text/css'
         media='all'>
@@ -20,7 +31,7 @@
     <link rel='stylesheet' href='plugins/sportspress/assets/css/sportspress.css' type='text/css' media='all'>
     <link rel='stylesheet' href='plugins/sportspress/assets/css/icons.css' type='text/css' media='all'>
     <link rel='stylesheet' href='css/style-core.css' type='text/css' media='all'>
-    <link rel='stylesheet' href='css/                 BCB                                             BCB-style-custom.css' type='text/css' media='all'>
+    <link rel='stylesheet' href='css/bigslam-style-custom.css' type='text/css' media='all'>
     <link rel='stylesheet' href='plugins/google-map-plugin/assets/css/frontend.css' type='text/css' media='all'>
 
     <link rel='stylesheet'
@@ -35,6 +46,73 @@
 </head>
 
 <body
+    class="home page-template-default page page-id-5067 theme-bigslam gdlr-core-body woocommerce-no-js bigslam-body bigslam-body-front bigslam-full gdlr-core-link-to-lightbox">
+    <div class="bigslam-mobile-header-wrap">
+        <div class="bigslam-mobile-header bigslam-header-background bigslam-style-slide" id="bigslam-mobile-header">
+            <div class="bigslam-mobile-header-container bigslam-container">
+                <div class="bigslam-logo  bigslam-item-pdlr">
+                    <div class="bigslam-logo-inner">
+                        <a href="index-2.html"><img src="upload/logo.png" alt="" width="200" height="191"
+                                title="logo"></a>
+                    </div>
+                </div>
+                <div class="bigslam-mobile-menu-right">
+                    <div class="bigslam-main-menu-search" id="bigslam-mobile-top-search"><i class="fa fa-search"></i>
+                    </div>
+                    <div class="bigslam-top-search-wrap">
+                        <div class="bigslam-top-search-close"></div>
+
+                        <div class="bigslam-top-search-row">
+                            <div class="bigslam-top-search-cell">
+                                <form role="search" method="get" class="search-form" action="#">
+                                    <input type="text" class="search-field bigslam-title-font" placeholder="Search..."
+                                        value="" name="s">
+                                    <div class="bigslam-top-search-submit"><i class="fa fa-search"></i></div>
+                                    <input type="submit" class="search-submit" value="Search">
+                                    <div class="bigslam-top-search-close"><i class="icon_close"></i></div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="bigslam-mobile-menu"><a
+                            class="bigslam-mm-menu-button bigslam-mobile-menu-button bigslam-mobile-button-hamburger-with-border"
+                            href="#bigslam-mobile-menu"><i class="fa fa-bars"></i></a>
+                        <div class="bigslam-mm-menu-wrap bigslam-navigation-font" id="bigslam-mobile-menu"
+                            data-slide="right">
+                            <ul id="menu-main-navigation" class="menu">
+                                <li class="menu-item menu-item-home current-menu-item "><a href="index.html"
+                                        aria-current="page">Home</a></li>
+                                <li class="menu-item menu-item-has-children"><a href="schedule.html">Schedule</a>
+                                   
+                                </li>
+                                <li class="menu-item menu-item-has-children"><a
+                                        href="player-list-default-style.html">Players</a>
+                                   
+                                </li>
+                                <li class="menu-item"><a href="liverpool.html">Our Team</a></li>
+                                <li class="menu-item menu-item-has-children"><a href="#">SportsPress</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item menu-item-has-children"><a href="#">Game</a>
+                                          
+                                        </li>
+                                        <li class="menu-item menu-item-has-children"><a href="#">Player</a>
+                                           
+                                        </li>
+                                        <li class="menu-item"><a href="league-table.html">League Table</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-children"><a href="#">Pages</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item menu-item-has-children"><a href="#">About</a>
+                                           
+                                        </li>
+                                        <li class="menu-item menu-item-has-children"><a
+                                                href="portfolio-3-columns.html">Portfolio</a>
+                                            
+                                        </li>
+                                        <li class="menu-item"><a href="#">Contact</a></li>
                                         <li class="menu-item"><a href="price-table.html">Price Table</a></li>
                                         <li class="menu-item"><a href="maintenance.html">Maintenance</a></li>
                                         <li class="menu-item"><a href="coming-soon.html">Coming Soon</a></li>
@@ -59,7 +137,7 @@
                                         <li class="menu-item"><a href="standard-post-type.html">Single Posts</a></li>
                                     </ul>
                                 </li>
-                                <li class="menu-item menu-item-has-children"><a href="#">Log in</a>
+                                <li class="menu-item menu-item-has-children"><a href="logout.php">Logout</a>
                                    
                                 </li>
                             </ul>
@@ -136,16 +214,17 @@
                                                     class="sf-with-ul-pre">SportsPress</a>
                                                
                                             </li>
-                                            <li class="menu-item menu-item-has-children bigslam-normal-menu"><a href="#"
-                                                    class="sf-with-ul-pre">Pages</a>
-                                                
-                                            </li>
+                                           
                                             <li class="menu-item menu-item-has-children bigslam-normal-menu"><a
                                                     href="blog-full-right-sidebar.html" class="sf-with-ul-pre">Blog</a>
                                                 
                                             </li>
-                                            <li class="menu-item menu-item-has-children bigslam-mega-menu"><a href="#"
-                                                    class="sf-with-ul-pre">Log in</a>
+                                             <li class="menu-item menu-item-has-children bigslam-normal-menu"><a href="#"
+                                                    class="sf-with-ul-pre">Pages</a>
+                                                
+                                            </li>
+                                            <li class="menu-item menu-item-has-children bigslam-mega-menu"><a href="logout.php"
+                                                    class="sf-with-ul-pre">Logout</a>
                                                 <div class="sf-mega sf-mega-full">
                                                    
                                                 </div>
@@ -407,7 +486,7 @@
                                                                 class="bigslam-sp-event-Log ind-title bigslam-title-font clearfix">
                                                                 <div class="bigslam-sp-event-Log ind-title-left"><span
                                                                         class="bigslam-sp-team-logo"><img width="90"
-                                                                            height="89" src="upload/flag-15.png"
+                                                                            height="89" src="upload/logo.png"
                                                                             class="attachment-sportspress-fit-medium size-sportspress-fit-medium wp-post-image"
                                                                             alt=""></span><span
                                                                         class="bigslam-sp-team-name"
@@ -426,7 +505,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="bigslam-sp-event-Log ind-info"><span
-                                                                    class="bigslam-sp-event-date">Mar 18, 02:30 PM LOCAL</span><span class="bigslam-sp-event-venue"><a
+                                                                    class="bigslam-sp-event-date">April 18, 02:30 PM LOCAL</span><span class="bigslam-sp-event-venue"><a
                                                                         href="#" rel="tag">Sylhet International Cricket Stadium</a></span></div>
                                                             <div class="bigslam-sp-event-Log ind-link"><a
                                                                     class="gdlr-core-button gdlr-core-rectangle  seocrawler-solid"
@@ -866,8 +945,7 @@
                                                                                 class="bigslam-sp-event-date">August 2,
                                                                                 2019</span><span
                                                                                 class="bigslam-sp-event-venue"><a
-                                                                                    href="#" rel="tag">Camp
-                                                                                    Nou</a></span></div>
+                                                                                    href="#" rel="tag">Sylhet International Cricket Stadium</a></span></div>
                                                                     </div>
                                                                     <div class="bigslam-sp-event-widget-list">
                                                                         <div
@@ -900,8 +978,7 @@
                                                                                 class="bigslam-sp-event-date">August 5,
                                                                                 2019</span><span
                                                                                 class="bigslam-sp-event-venue"><a
-                                                                                    href="#" rel="tag">Mestalla
-                                                                                    Stadium</a></span></div>
+                                                                                    href="#" rel="tag">Sylhet International Cricket Stadium</a></span></div>
                                                                     </div>
                                                                     <div class="bigslam-sp-event-widget-list">
                                                                         <div
@@ -934,8 +1011,7 @@
                                                                                 class="bigslam-sp-event-date">August 7,
                                                                                 2019</span><span
                                                                                 class="bigslam-sp-event-venue"><a
-                                                                                    href="#" rel="tag">San Paolo
-                                                                                    Stadium</a></span></div>
+                                                                                    href="#" rel="tag">Sylhet International Cricket Stadium</a></span></div>
                                                                     </div>
                                                                     <div class="bigslam-sp-event-widget-list">
                                                                         <div
@@ -966,8 +1042,7 @@
                                                                                 class="bigslam-sp-event-date">August 13,
                                                                                 2020</span><span
                                                                                 class="bigslam-sp-event-venue"><a
-                                                                                    href="#" rel="tag">Santiago Bernabéu
-                                                                                    Stadium</a></span></div>
+                                                                                    href="#" rel="tag">Sylhet International Cricket Stadium</a></span></div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -975,13 +1050,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div
-                                                    class="gdlr-core-button-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-center-align">
-                                                    <a class="gdlr-core-button  gdlr-core-button-transparent gdlr-core-button-no-border"
-                                                        href="#" id="gdlr-core-button-id-26835"><span
-                                                            class="gdlr-core-content">View All Results</span><i
-                                                            class="gdlr-core-pos-right fa fa-long-arrow-right"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1112,7 +1180,7 @@
                     <div class="gdlr-core-pbf-wrapper " style="padding: 100px 0px 60px 0px;">
                         <div class="gdlr-core-pbf-background-wrap">
                             <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js"
-                                style="background-image: url(upload/bg-sh-hp2.jpg) ;background-size: cover ;background-position: center ;"
+                                style="background-image: url(upload/bangladesh-vs-england-1678638627.jpg) ;background-size: cover ;background-position: center ;"
                                 data-parallax-speed="0.1"></div>
                         </div>
                         <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
@@ -1163,7 +1231,7 @@
                                                                 <div class="sp-table-wrapper">
                                                                     <table style="td {
                                                                         text-align: center;
-                                                                            }"
+                                                                      }"
                                                                         class="sp-league-table sp-data-table sp-sortable-table sp-scrollable-table sp-paginated-table"
                                                                         data-sp-rows="10">
                                                                         <thead>
@@ -1365,11 +1433,11 @@
                                                                         data-sp-rows="10">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th class="data-date">Date</th>
-                                                                                <th class="data-event">Event</th>
-                                                                                <th class="data-time">Time/Results</th>
-                                                                                <th class="data-venue">Venue</th>
-                                                                                <th class="data-article">Article</th>
+                                                                                <th class="data-date">Team 1</th>
+                                                                                <th class="data-event">Team 2</th>
+                                                                                <th class="data-time">Winner</th>
+                                                                                <th class="data-venue">Margin</th>
+                                                                                <th class="data-Ground">Ground</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -1660,95 +1728,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-            
-                                        <footer>
-                                               <div class="bigslam-footer-wrapper">
-                                                   <div class="bigslam-footer-container bigslam-container clearfix">
-                                                        <div class="bigslam-footer-column bigslam-item-pdlr bigslam-column-20">
-                                                            <div id="text-11" class="widget widget_text bigslam-widget">
-                                                               <h3 class="bigslam-widget-title">Contact Info</h3>
-                                                                 <div class="textwidget">
-                                                                   <p>BCB</p>
-                                                                      </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="BCBBCB-footer-columnBCBBCB-item-pdlrBCBBCB-column-20">
-                            <div id="gdlr-core-custom-menu-widget-2"
-                                class="widget widget_gdlr-core-custom-menu-widgetBCBBCB-widget">
-                                <h3 class="BCBBCB-widget-title">Resources</h3>
-                                <div class="menu-main-navigation-container">
-                                    <ul id="menu-main-navigation-2"
-                                        class="gdlr-core-custom-menu-widget gdlr-core-menu-style-half">
-                                        <li
-                                            class="menu-item menu-item-home current-menu-item page_item page-item-5067 current_page_item menu-item-5327">
-                                            <a href="index-2.html" aria-current="page">Home</a>
-                                        </li>
-                                        <li class="menu-item"><a href="#">Schedule</a></li>
-                                        <li class="menu-item"><a href="#">Players</a></li>
-                                        <li class="menu-item"><a href="#">Our Team</a></li>
-                                        <li class="menu-item"><a href="#">SportsPress</a></li>
-                                        <li class="menu-item"><a href="#">Pages</a></li>
-                                        <li class="menu-item"><a href="#">Blog</a></li>
-                                        <li class="menu-item"><a href="#">Log in</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="BCBBCB-footer-columnBCBBCB-item-pdlrBCBBCB-column-20">
-                            <div id="text-10" class="widget widget_textBCBBCB-widget">
-                                <h3 class="BCBBCB-widget-title">Newsletter</h3>
-                                <div class="textwidget">
-                                    <p>We&#8217;ll send updates straight to your inbox. Let&#8217;s stay connected!
-                                        <span class="gdlr-core-space-shortcode" style="margin-top: -40px ;"></span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div id="gdlr-core-newsletter-widget-2"
-                                class="widget widget_gdlr-core-newsletter-widgetBCBBCB-widget">
-                                <div class="gdlr-core-with-fa-send-o-button tnp tnp-subscription gdlr-core-style-2">
-                                    <form method="post" action="http://localhost/infinite/?na=s"
-                                        onsubmit="return newsletter_check(this)">
-
-                                        <input type="hidden" name="nlang" value="">
-                                        <div class="tnp-field tnp-field-email">
-                                            <input class="tnp-email" type="email" name="ne"
-                                                placeholder="Enter Your Email Address" required="">
-                                        </div>
-                                        <div class="tnp-field tnp-field-button" style="color: #fff;">
-                                            <input class="tnp-submit" type="submit" value="Subscribe"
-                                                style="background-color:#f27052;">
-                                        </div>
-
-                                    </form>
-                                </div>
-                            </div>
-                            <div id="text-1" class="widget widget_textBCBBCB-widget">
-                                <div class="textwidget"><span class="gdlr-core-space-shortcode"
-                                        style="margin-top: -30px ;"></span>
-                                    <a href="#" target="_blank" rel="noopener noreferrer"><i class="fa fa-twitter"
-                                            style="font-size: 20px ;color: #8a99c0 ;margin-right: 20px ;"></i></a> <a
-                                        href="#" target="_blank" rel="noopener noreferrer"><i class="fa fa-facebook"
-                                            style="font-size: 20px ;color: #8a99c0 ;margin-right: 20px ;"></i></a> <a
-                                        href="#" target="_blank" rel="noopener noreferrer"><i class="fa fa-instagram"
-                                            style="font-size: 20px ;color: #8a99c0 ;margin-right: 20px ;"></i></a> <a
-                                        href="#" target="_blank" rel="noopener noreferrer"><i class="fa fa-pinterest-p"
-                                            style="font-size: 20px ;color: #8a99c0 ;margin-right: 20px ;"></i></a> <a
-                                        href="#" target="_blank" rel="noopener noreferrer"><i class="fa fa-linkedin"
-                                            style="font-size: 20px ;color: #8a99c0 ;margin-right: 20px ;"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="BCBBCB-copyright-wrapper">
-                    <div class="BCBBCB-copyright-containerBCBBCB-container">
-                    </div>
-                </div>
-            </footer>
         </div>
-    </div><a href="#BCBBCB-top-anchor"class="BCBBCB-footer-back-to-top-button"
-        id="BCBBCB-footer-back-to-top-button"><i class="fa fa-angle-up"></i></a>
+    </div><a href="#bigslam-top-anchor" class="bigslam-footer-back-to-top-button"
+        id="bigslam-footer-back-to-top-button"><i class="fa fa-angle-up"></i></a>
 
     <script type='text/javascript' src='js/jquery/jquery.js'></script>
     <script type='text/javascript' src='js/jquery/jquery-migrate.min.js'></script>
@@ -1767,8 +1749,8 @@
                 "views": 264721,
                     "favorites": 544,
                         "createdBy": {
-            "name": "Adam Krogh",
-                "url": "https:////twitter.com//adamkrogh"
+            "name": "Jaohar Raihan",
+                "url": "https://twitter.com/jaoharraihan"
         },
         "createdOn": "2013-11-12T18:21:41.94",
             "tags": ["dark", "greyscale"],
@@ -1832,7 +1814,7 @@
     <script type='text/javascript' src='js/jquery/ui/effect.min.js'></script>
     <script type='text/javascript'>
         /* <![CDATA[ */
-        var                  BCB                                             BCB_script_core = {
+        var bigslam_script_core = {
             "home_url": "index.html"
         };
         /* ]]> */
@@ -1916,7 +1898,7 @@
                 revslider_showDoubleJqueryError("#rev_slider_1_1");
             } else {
                 revapi1 = tpj("#rev_slider_1_1").show().revolution({
-                    jsFileLocation: "//demo.goodlayers.com/BCBBCB/homepages/soccer01/wp-content/plugins/revslider/public/assets/js/",
+                    jsFileLocation: "//demo.goodlayers.com/bigslam/homepages/soccer01/wp-content/plugins/revslider/public/assets/js/",
                     sliderLayout: "fullwidth",
                     visibilityLevels: "1240,1240,1240,480",
                     gridwidth: "1240,1240,1240,480",
